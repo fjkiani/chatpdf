@@ -13,8 +13,6 @@ import { useRouter } from "next/navigation";
 const FileUpload = () => {
   const router = useRouter();
   const [uploading, setUploading] = React.useState(false);
-
-  //hit the backend api 
   const { mutate, isLoading } = useMutation({
     mutationFn: async ({
       file_key,
@@ -32,7 +30,6 @@ const FileUpload = () => {
   });
 
   const { getRootProps, getInputProps } = useDropzone({
-    //types of application that could be uploaded
     accept: { "application/pdf": [".pdf"] },
     maxFiles: 1,
     onDrop: async (acceptedFiles) => {
@@ -46,8 +43,7 @@ const FileUpload = () => {
       try {
         setUploading(true);
         const data = await uploadToS3(file);
-        //this file then gets sent to route.ts
-        console.log("data", data);
+        console.log("meow", data);
         if (!data?.file_key || !data.file_name) {
           toast.error("Something went wrong");
           return;

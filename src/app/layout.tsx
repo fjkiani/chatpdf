@@ -18,7 +18,6 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      {/* //allow for caching */}
       <Providers>
         <html lang="en">
           <body className={inter.className}>{children}</body>
